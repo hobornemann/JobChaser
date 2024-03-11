@@ -1,0 +1,10 @@
+header{
+    background-color: blueviolet;
+    display: flex;
+    justify-content: flex-start;
+}
+
+h1{
+    color: white;
+}
+
