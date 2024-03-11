@@ -2,6 +2,7 @@ header{
     background-color: blueviolet;
     display: flex;
     justify-content: flex-start;
+    border-radius: 2vh;
 }
 
 h1{
