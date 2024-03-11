@@ -9,6 +9,13 @@
     border-radius: 2vh;
 }
 
+.jobCard div:f{
+    margin-top: 17vh;
+}
+
+
+
+
 .jobDescriptionHeading{
     line-height: normal;
     margin: 0 0;
@@ -45,6 +52,8 @@
     height: 20vh;
     width: 20vh;
 }
+
+
 
 /* button{
     border-radius: 8px;
