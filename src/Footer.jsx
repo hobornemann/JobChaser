@@ -4,7 +4,7 @@ export default Footer
 function Footer() {
     return (
       <footer>
-        <p>@copyright JobChaser</p>
+        <p>&copy; Copyright  JobChaser</p>
       </footer>
     );
 }
