@@ -1,11 +1,22 @@
 header{
-    background-color: blueviolet;
+    background-color: rgba(48, 50, 113, 0.5);
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     border-radius: 2vh;
+}
+
+.jobChaser-logo{
+    margin: 2vh;
 }
 
 h1{
     color: white;
 }
 
+.heading{
+    line-height: 7vh;
+}
+
+button{
+    background-color: rgba(129, 130, 165, 0.5);;
+}

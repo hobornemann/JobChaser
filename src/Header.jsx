@@ -6,8 +6,9 @@ export default Header
 function Header() {
     return (
       <header>
-        <h1>&nbsp;JobChaser</h1>
-        <SearchBar/>
+        <img src="./images/jobChaser-logo.svg" alt="" className="jobChaser-logo" />
+        {/* <h1 className='heading'>&nbsp;JobChaser</h1> */}
+        <SearchBar />
       </header>
     );
 }
