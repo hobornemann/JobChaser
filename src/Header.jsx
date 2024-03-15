@@ -1,4 +1,4 @@
-import SearchBar from './Search'
+import Search from './Search'
 import './styles/header.css'
 
 export default Header
@@ -8,7 +8,7 @@ function Header({searchTerm, onSearch, onClear, onChange}) {
       <header>
         <img src="./images/jobChaser-logo.svg" alt="" className="jobChaser-logo" />
         {/* <h1 className='heading'>&nbsp;JobChaser</h1> */}
-        <SearchBar 
+        <Search 
           searchTerm={searchTerm}
           onChange={onChange}
           onSearch={onSearch}

@@ -1,8 +1,17 @@
-import './styles/searchBar.css'
+import { useRef } from 'react';
+import './styles/search.css';
+export default Search;
 
-export default Search
 
-function Search({searchTerm, onSearch, onClear, onChange}){
+function Search({ searchTerm, onSearch, onClear, onChange }) {
+    const searchButton = useRef(null);
+
+    function handleKeyDown(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission
+            searchButton.current.click(); // Trigger button click
+        }
+    }
 
     return (
         <div className="searchBar">
@@ -13,29 +22,58 @@ function Search({searchTerm, onSearch, onClear, onChange}){
                     className="search-input" 
                     placeholder="Write your search text here"
                     value={searchTerm}
-                    onChange={onChange(e)}
+                    onChange={onChange}
+                    onKeyDown={handleKeyDown}
                 />
             </label>
             <div className="buttons">
-                <button className='searchBar-button' onClick={onSearch(e)}>Search</button>
-                <button className='searchBar-button' onClick={onClear(e)}>Clear</button>
+                <button ref={searchButton} className='searchBar-button' onClick={onSearch}>Search</button>
+                <button className='searchBar-button' onClick={onClear}>Clear</button>
             </div>
         </div>
     );
 }
 
 
-/* return (
-    <>
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                value={searchTerm}
-                onChange={handleChange}
-                placeholder="Sök"
-            />
-            <button type="submit">Sök!</button>
-        </form>
-        <p>{searchTerm}</p>
-    </>
-); */
+
+
+/* 
+
+
+import {useRef} from 'react'
+import './styles/search.css'
+
+export default Search
+
+const searchButton = useRef{null}
+
+function Search({searchTerm, onSearch, onClear, onChange}){
+
+    function handleKeyDown (event){
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission
+            searchButton.current.click(); // Trigger button click
+        }
+    }
+    
+
+    return (
+        <div className="searchBar">
+            <label className="search-icon-and-input">
+                <img src="./images/search-icon.svg" alt="" className="search-icon" />
+                <input 
+                    type="text" 
+                    className="search-input" 
+                    placeholder="Write your search text here"
+                    value={searchTerm}
+                    onChange={onChange}
+                    onKeyDown={handleKeyDown}
+                />
+            </label>
+            <div className="buttons">
+                <button ref="searchButton" className='searchBar-button' onClick={onSearch}>Search</button>
+                <button className='searchBar-button' onClick={onClear}>Clear</button>
+            </div>
+        </div>
+    );
+} */
