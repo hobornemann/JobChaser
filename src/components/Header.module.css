@@ -1,0 +1,23 @@
+header{
+    background: linear-gradient(rgba(48, 50, 113, 0.8), rgba(48, 50, 113, 0.5));
+    color: rgba(48, 50, 113, 1.0);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 1vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    height: 15vh;
+}
+
+.jobChaserLogo{
+    margin: 1vh;
+}
+
+.heading{
+    line-height: 7vh;
+}
+
+

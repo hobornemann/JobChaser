@@ -1,0 +1,48 @@
+.searchBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 2vh;
+}
+
+.searchIconAndInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 6vh;
+    margin: 0 6vh;
+}
+
+.searchIcon{
+    height: 5vh;
+    margin: 0 2vh;
+}
+
+input{
+    height: 6vh;
+    border-radius: 2vh;
+    width: 20vw;
+    font-size: 2.5vh;
+    border-color: rgba(48, 50, 113, 1.0);
+}
+
+input::placeholder{
+
+    color: rgba(48, 50, 113, 1.0);
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 2vw;
+    
+}
+
+.searchBarButton{
+    color: white;
+    background-color: rgba(48, 50, 113, 0.8 );;
+}
+

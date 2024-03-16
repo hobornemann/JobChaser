@@ -1,5 +1,6 @@
 import { useRef } from 'react';
-import './styles/search.css';
+/* import './styles/search.css'; */
+import styles from './Search.module.css'
 export default Search;
 
 
@@ -14,21 +15,21 @@ function Search({ searchTerm, onSearch, onClear, onChange }) {
     }
 
     return (
-        <div className="searchBar">
-            <label className="search-icon-and-input">
-                <img src="./images/search-icon.svg" alt="" className="search-icon" />
+        <div className={styles.searchBar}>
+            <label className={styles.searchIconAndInput}>
+                <img src="./images/search-icon.svg" alt="" className={styles.searchIcon} />
                 <input 
                     type="text" 
-                    className="search-input" 
+                    className={styles.searchInput}
                     placeholder="Write your search text here"
                     value={searchTerm}
                     onChange={onChange}
                     onKeyDown={handleKeyDown}
                 />
             </label>
-            <div className="buttons">
-                <button ref={searchButton} className='searchBar-button' onClick={onSearch}>Search</button>
-                <button className='searchBar-button' onClick={onClear}>Clear</button>
+            <div className={styles.buttons}>
+                <button ref={searchButton} className={styles.searchBarButton} onClick={onSearch}>Search</button>
+                <button className={styles.searchBarButton} onClick={onClear}>Clear</button>
             </div>
         </div>
     );
