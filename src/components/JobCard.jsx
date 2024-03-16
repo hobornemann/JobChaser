@@ -1,5 +1,5 @@
 
-/* import './styles/jobCard.css' */
+import Tag from './Tag'
 import styles from './JobCard.module.css';
 import '../index.css'
 
@@ -26,12 +26,16 @@ function JobCard({company, logoUrl, position, role,
                     {toolsConcat && <p className={styles.jobCardInfo}><b>Tools</b>: {toolsConcat}</p>}
                 </div>
             </div>
-            <div className="buttons">
-                <button>Tag 1</button>
-                <button>Tag 2</button>
-                <button>Tag 3</button>
-                <button>Tag 4</button>
-            </div>
+            {languages && 
+                languages.map((language, index) => {
+                    return (
+                    <Tag
+                        key={index}
+                        language={language}
+                    />
+                    );
+                })
+            }
         </div>
     );
 }

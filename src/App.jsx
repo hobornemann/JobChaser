@@ -12,7 +12,7 @@ export default App
 
 function App() {
 
-/*   const [isLoading, setIsLoading] = useState(null) */
+  /* const [isLoading, setIsLoading] = useState(true)  */
   const [allJobs, setAllJobs] = useState([])
   const [allJobsAsStrings, setAllJobsAsStrings] = useState([])
   const [jobs, setJobs] = useState([])
@@ -35,11 +35,13 @@ function App() {
           const jobsFromFetch = await response.json();
           setAllJobs(jobsFromFetch);
           setJobs(jobsFromFetch);
+          /* setIsLoading(false) */
           // set timer med await för att visa Loader-funktionalitet  TODO:
           // setTimeout(function(){},1000);
       } catch (error) {
         console.log(error.message)
         console.error('Error fetching jobs');
+        /* setIsLoading(false) */
       }
     };
   
@@ -57,6 +59,7 @@ function App() {
       return searchNestedObject(job, searchTerm)
     })
     setJobs(searchedJobs);
+    searchedJobs.length && setFeedback('Sorry, no jobs matched your search text.')
   }
 
   function handleClear(e){
@@ -99,8 +102,7 @@ function App() {
         onClear={handleClear}
       />
       <main> 
-        {!jobs && <Loader feedback={feedback} />}
-        {jobs && 
+        {jobs.length && 
           jobs.map((job) => {
             return (
               <JobCard
@@ -119,6 +121,7 @@ function App() {
             );
           })
         }  
+        {!jobs.length && <Loader feedback={feedback} />}
       </main>
       <Footer />
     </div>

@@ -1,5 +1,4 @@
 import Search from './Search'
-/* import './styles/header.css' */
 import styles from './Header.module.css'
 
 export default Header
