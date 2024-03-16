@@ -3,7 +3,6 @@ import Header from './components/Header'
 import Loader from './components/Loader'
 import Footer from './components/Footer'
 import JobCard from './components/JobCard'
-
 import './App.css'
 
 export default App
@@ -12,7 +11,6 @@ export default App
 
 function App() {
 
-  /* const [isLoading, setIsLoading] = useState(true)  */
   const [allJobs, setAllJobs] = useState([])
   const [allJobsAsStrings, setAllJobsAsStrings] = useState([])
   const [jobs, setJobs] = useState([])
@@ -34,13 +32,9 @@ function App() {
           const jobsFromFetch = await response.json();
           setAllJobs(jobsFromFetch);
           setJobs(jobsFromFetch);
-          /* setIsLoading(false) */
-          // set timer med await för att visa Loader-funktionalitet  TODO:
-          // setTimeout(function(){},1000);
       } catch (error) {
         console.log(error.message)
         console.error('Error fetching jobs');
-        /* setIsLoading(false) */
       }
     };
   

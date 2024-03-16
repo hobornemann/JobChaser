@@ -5,8 +5,8 @@ export default Tag
 
 function Tag({language}) {
     return (
-      <div className={styles.tag}>
-        {language}
-      </div>
+        <div className={styles.tag}>
+            {language}
+        </div>
     );
 }

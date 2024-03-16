@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-/* import './styles/search.css'; */
 import styles from './Search.module.css'
 export default Search;
 

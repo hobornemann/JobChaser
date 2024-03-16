@@ -1,7 +1,6 @@
 
 import Tag from './Tag'
 import styles from './JobCard.module.css';
-import '../index.css'
 
 export default JobCard
 
