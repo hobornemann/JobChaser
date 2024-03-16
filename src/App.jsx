@@ -26,7 +26,7 @@ function App() {
       try {
           setFeedback('Loading data...')
           /*const response = await fetch('https://jsonplaceholder.typicode.com/posts');*/
-          const response = await fetch('./src/jsons/jobs.json');
+          const response = await fetch('./jsons/jobs.json');
 
           if (!response.ok) {
             setFeedback("The jobs list cannot be loaded. Please try again later.")
