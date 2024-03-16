@@ -6,7 +6,8 @@
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: rgba(48, 50, 113, 0.25);
+/*     background-color: rgba(48, 50, 113, 0.1); */
+    background-color: white;
     cursor: pointer;
     transition: border-color 0.25s;
     color: rgba(48, 50, 113, 1.0);
