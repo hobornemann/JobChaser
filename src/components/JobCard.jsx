@@ -13,7 +13,7 @@ function JobCard({company, logoUrl, position, role,
         <div className={styles.jobCard}>
             {logoUrl? <img src={logoUrl} alt="" className="imgRound" /> : <img src='./images/jobChaser-default.svg' alt="" className="imgRound" />}
             <div className={styles.jobDescription}>
-                <h2 className={styles.jobDescriptionHeading}>Job Description</h2>
+                <h2 className={styles.jobDescriptionHeading}>{position}</h2>
                 <div className={styles.jobDescriptionItems}>
                     {company && <p className={styles.jobCardInfo}><b>Company</b>: {company}</p>}
                     {position && <p className={styles.jobCardInfo}> <b>Position</b>: {position}</p>}
