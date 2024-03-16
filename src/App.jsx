@@ -16,7 +16,7 @@ function App() {
   const [allJobs, setAllJobs] = useState([])
   const [allJobsAsStrings, setAllJobsAsStrings] = useState([])
   const [jobs, setJobs] = useState([])
-  const [feedback, setFeedback] = useState('')
+  const [feedback, setFeedback] = useState('Loading data...')
   const [searchTerm, setSearchTerm] = useState('')
 
 
@@ -24,7 +24,6 @@ function App() {
     // Denna kod kommer köras efter mount (initiala renderingen)
     const fetchJobs = async () => {
       try {
-          setFeedback('Loading data...')
           /*const response = await fetch('https://jsonplaceholder.typicode.com/posts');*/
           const response = await fetch('./jsons/jobs.json');
 
@@ -45,8 +44,10 @@ function App() {
       }
     };
   
-  fetchJobs();
-  }, []);   // 
+    setTimeout(()=> {
+      fetchJobs();
+    },1000)  
+  }, []);   // dependency-array inkluderas så att funtionen bara körs vid mount 
   
   function handleChange(e) {
     e.preventDefault();
@@ -59,7 +60,7 @@ function App() {
       return searchNestedObject(job, searchTerm)
     })
     setJobs(searchedJobs);
-    searchedJobs.length && setFeedback('Sorry, no jobs matched your search text.')
+    !searchedJobs.length && setFeedback('Sorry, no jobs matched your search text.')
   }
 
   function handleClear(e){
@@ -102,7 +103,7 @@ function App() {
         onClear={handleClear}
       />
       <main> 
-        {jobs.length && 
+        {jobs.length>0 && 
           jobs.map((job) => {
             return (
               <JobCard
@@ -121,7 +122,7 @@ function App() {
             );
           })
         }  
-        {!jobs.length && <Loader feedback={feedback} />}
+        {(jobs.length===0) && <Loader feedback={feedback} />}
       </main>
       <Footer />
     </div>
