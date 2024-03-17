@@ -6,6 +6,7 @@ export default JobCard
 
 function JobCard({company, logoUrl, position, role, 
     level, postedAt, contract, location, languages, tools}){
+        
     let languagesConcat = languages.join(", ")
     let toolsConcat = tools.join(", ")
     return(

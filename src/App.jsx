@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header'
 import Loader from './components/Loader'
 import Footer from './components/Footer'
-import JobCard from './components/JobCard'
+import List from './components/List'
+
 import './App.css'
 
 export default App
@@ -97,32 +98,16 @@ function App() {
         onClear={handleClear}
       />
       <main> 
-        <ul>
-          {jobs.length>0 && 
-            jobs.map((job) => {
-              return (
-                <JobCard
-                  key={job.id}
-                  company={job.company}
-                  logoUrl={job.logo}
-                  position={job.position}
-                  role={job.role}
-                  level={job.level}
-                  postedAt={job.postedAt}
-                  contract={job.contract}
-                  location={job.location}
-                  languages={job.languages}
-                  tools={job.tools}
-                />
-              );
-            })
-          }  
-        </ul>
+        {(jobs.length>0) && 
+          <List 
+            key="1"
+            jobs={jobs}
+          />  
+        }  
         {(jobs.length===0) && <Loader feedback={feedback} />}
       </main>
       <Footer />
     </div>
   );
-
 }
 
