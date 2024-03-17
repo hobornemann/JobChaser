@@ -97,25 +97,27 @@ function App() {
         onClear={handleClear}
       />
       <main> 
-        {jobs.length>0 && 
-          jobs.map((job) => {
-            return (
-              <JobCard
-                key={job.id}
-                company={job.company}
-                logoUrl={job.logo}
-                position={job.position}
-                role={job.role}
-                level={job.level}
-                postedAt={job.postedAt}
-                contract={job.contract}
-                location={job.location}
-                languages={job.languages}
-                tools={job.tools}
-              />
-            );
-          })
-        }  
+        <ul>
+          {jobs.length>0 && 
+            jobs.map((job) => {
+              return (
+                <JobCard
+                  key={job.id}
+                  company={job.company}
+                  logoUrl={job.logo}
+                  position={job.position}
+                  role={job.role}
+                  level={job.level}
+                  postedAt={job.postedAt}
+                  contract={job.contract}
+                  location={job.location}
+                  languages={job.languages}
+                  tools={job.tools}
+                />
+              );
+            })
+          }  
+        </ul>
         {(jobs.length===0) && <Loader feedback={feedback} />}
       </main>
       <Footer />

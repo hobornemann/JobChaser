@@ -9,7 +9,7 @@ function JobCard({company, logoUrl, position, role,
     let languagesConcat = languages.join(", ")
     let toolsConcat = tools.join(", ")
     return(
-        <div className={styles.jobCard}>
+        <li className={styles.jobCard}>
             {logoUrl? <img src={logoUrl} alt="" className="imgRound" /> : <img src='./images/jobChaser-default.svg' alt="" className="imgRound" />}
             <div className={styles.jobDescription}>
                 <h2 className={styles.jobDescriptionHeading}>{position}</h2>
@@ -35,6 +35,6 @@ function JobCard({company, logoUrl, position, role,
                     );
                 })
             }
-        </div>
+        </li>
     );
 }
