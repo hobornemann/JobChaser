@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from './components/Header'
-import Loader from './components/Loader'
+import Feedback from './components/Feedback'
 import Footer from './components/Footer'
 import List from './components/List'
 
@@ -13,7 +13,6 @@ export default App
 function App() {
 
   const [allJobs, setAllJobs] = useState([])
-  const [allJobsAsStrings, setAllJobsAsStrings] = useState([])
   const [jobs, setJobs] = useState([])
   const [feedback, setFeedback] = useState('Loading data...')
   const [searchTerm, setSearchTerm] = useState('')
@@ -31,6 +30,7 @@ function App() {
             throw new Error('Failed to fetch');
           }
           const jobsFromFetch = await response.json();
+          (jobsFromFetch.length === 0) ? setFeedback('No jobs available') : setFeedback('')
           setAllJobs(jobsFromFetch);
           setJobs(jobsFromFetch);
       } catch (error) {
@@ -47,19 +47,22 @@ function App() {
   function handleChange(e) {
     e.preventDefault();
     setSearchTerm(e.target.value)
+
   }
 
   function handleSearch(e){
     e.preventDefault();
+    setFeedback('')
     const searchedJobs = allJobs.filter(job => {
       return searchNestedObject(job, searchTerm)
     })
     setJobs(searchedJobs);
-    !searchedJobs.length && setFeedback('Sorry, no jobs matched your search text.')
+    !searchedJobs.length && setFeedback('Sorry, no jobs matched your search text.') 
   }
 
   function handleClear(e){
     e.preventDefault();
+    setFeedback('')
     setJobs(allJobs)
     setSearchTerm('')
   }
@@ -104,7 +107,7 @@ function App() {
             jobs={jobs}
           />  
         }  
-        {(jobs.length===0) && <Loader feedback={feedback} />}
+        {feedback && <Feedback feedback={feedback} />}
       </main>
       <Footer />
     </div>
