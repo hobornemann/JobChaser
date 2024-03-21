@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate, Link, Outlet } from 'react-router-dom'
 import Search from './Search'
 import styles from './Header.module.css'
-/* import HomePage from "./pages/HomePage"; */
+import HomePage from "../pages/HomePage"; 
 import SignInPage from '../pages/SignInPage';
 import SignUpPage from '../pages/SignUpPage';
 import Dashboard from '../pages/Dashboard'
@@ -38,6 +38,9 @@ function Header({searchTerm, onSearch, onClear, onChange}) {
                 />
                 <ul className='navigationLinks'>
                     <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
                         <Link to="/signin">Sign in</Link>
                     </li>
                     <li>
@@ -49,7 +52,7 @@ function Header({searchTerm, onSearch, onClear, onChange}) {
                 </ul>
             </nav>
           <Routes>
-              {/* <Route path="/" element={<HomePage/>}/> */}
+              <Route path="/" element={<HomePage/>}/> 
               <Route path="/signup" element={<SignUpPage/>}/>
               <Route path="/signin" element={<SignInPage/>}/>
               <Route path="/dashboard" element={<ProtectedRoute/>}>

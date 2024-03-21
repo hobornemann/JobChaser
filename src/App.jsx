@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header'
-import Feedback from './components/Feedback'
-import Footer from './components/Footer'
-import List from './components/List'
+import HomePage from './pages/HomePage';
 
 import './App.css'
+
 
 export default App
 
@@ -93,24 +91,14 @@ function App() {
 
 
   return (
-    <div className='jobChaserContainer'>
-      <Header 
-        searchTerm={searchTerm}
-        onChange={handleChange}
-        onSearch={handleSearch}
-        onClear={handleClear}
-      />
-      <main> 
-        {(jobs.length>0) && 
-          <List 
-            key="1"
-            jobs={jobs}
-          />  
-        }  
-        {feedback && <Feedback feedback={feedback} />}
-      </main>
-      <Footer />
-    </div>
+    <HomePage
+      searchTerm={searchTerm}
+      handleChange={handleChange}
+      handleSearch={handleSearch}
+      handleClear={handleClear}
+      jobs={jobs}
+      feedback={feedback}
+    />
   );
 }
 
