@@ -1,14 +1,29 @@
-import Header from '../components/Header'
-import JobsList from '../components/Main'
-import Feedback from "../components/Feedback"
-import Footer from '../components/Footer'
+import Main from '../components/Main'
 
 export default HomePage;
 
-function HomePage({searchTerm, handleChange, handleSearch, handleClear, jobs, feedback}) {
+
+function HomePage({jobs, feedback}) {
 
   return (
     <>
+      <Main
+        jobs={jobs}
+        feedback={feedback}
+      />
+    </>
+  );
+}
+
+
+/*
+import Header from '../components/Header'
+import JobsList from '../components/JobsList'
+import Feedback from "../components/Feedback"
+import Footer from '../components/Footer' 
+ */
+
+/* 
         <Header 
           searchTerm={searchTerm}
           onChange={handleChange}
@@ -25,7 +40,4 @@ function HomePage({searchTerm, handleChange, handleSearch, handleClear, jobs, fe
           {feedback && <Feedback feedback={feedback} />}
         </main>
         <Footer />
-    </>
-  );
-}
-
+*/
