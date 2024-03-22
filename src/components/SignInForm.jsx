@@ -1,8 +1,14 @@
 import { useForm } from "react-hook-form";
-import {  Link } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase.config"
 
+/* const auth = getAuth(); */
 
 function SignInForm() {
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -11,8 +17,21 @@ function SignInForm() {
 
   const formSubmit = (data) => {
 
-   console.log("Form Submitted: ", data);
+    console.log("Form Submitted: ", data);
 
+    const {email, password} = data
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log("User signed in: ", user);
+        navigate("/dashboard");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
   };
 
   return (

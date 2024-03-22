@@ -1,14 +1,14 @@
-import styles from './JobsList.module.css'
+import styles from './Main.module.css'
 import JobCard from './JobCard'
 
 
-export default JobsList
+export default Main
 
 
 
-function JobsList({jobs}) {
+function Main({jobs}) {
     return (
-        <div className='jobsListContainer'> 
+        <section className='mainContainer'> 
             <ul className={styles.jobsList}>
                 {jobs.length>0 && 
                     jobs.map((job) => {
@@ -30,6 +30,6 @@ function JobsList({jobs}) {
                     })
                 }  
             </ul>
-        </div>
+        </section>
     );
 }

@@ -1,7 +1,12 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import  {createUserWithEmailAndPassword} from "firebase/auth";
+import { auth } from '../../firebase.config'
+
 
 function SignUpForm() {
+
+  const navigate = useNavigate()
 
   const {
     register,
@@ -14,6 +19,20 @@ function SignUpForm() {
   const formSubmit = (data) => {
     console.log("Form Submitted: ", data);
 
+    const {email, password} = data
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed up 
+      const user = userCredential.user;
+      // ...  go to singIn page
+      navigate("/signin")
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
     
   };
 
@@ -66,10 +85,8 @@ function SignUpForm() {
           <span>{errors.confirmPassword.message}</span>
         )}
       </div>
-
       <button type="submit">Register</button>
       <Link to="/signin">Already have an account? Sign In</Link>
-
     </form>
   );
 }

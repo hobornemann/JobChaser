@@ -1,5 +1,5 @@
 import Header from '../components/Header'
-import JobsList from '../components/JobsList'
+import JobsList from '../components/Main'
 import Feedback from "../components/Feedback"
 import Footer from '../components/Footer'
 

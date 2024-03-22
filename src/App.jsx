@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import HomePage from './pages/HomePage';
 
 import './App.css'
+import Main from './components/Main';
+import Footer from './components/Footer';
 
 
 export default App
@@ -91,14 +93,60 @@ function App() {
 
 
   return (
-    <HomePage
+    <BrowserRouter>
+      
+      <Header
+        searchTerm={searchTerm}
+        handleChange={handleChange}
+        handleSearch={handleSearch}
+        handleClear={handleClear}
+        jobs={jobs}
+        feedback={feedback}
+      /> 
+      
+      <Main
+        jobs={jobs}
+      />
+
+      <Footer/>
+
+    
+      <Routes>
+          <Route path="/" element={<HomePage/>}/> 
+          <Route path="/*" element={<Navigate to="/" replace />}/> 
+          <Route path="/signup" element={<SignUpPage/>}/>
+          <Route path="/signin" element={<SignInPage/>}/>
+          <Route path="/dashboard" element={<ProtectedRoute/>}>
+              <Route path="/dashboard" element={<Dashboard/>}/> 
+          </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+
+
+   /*  <HomePage
       searchTerm={searchTerm}
       handleChange={handleChange}
       handleSearch={handleSearch}
       handleClear={handleClear}
       jobs={jobs}
       feedback={feedback}
-    />
-  );
-}
+    /> */
 
+/* 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    const uid = user.uid;
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+}); */
