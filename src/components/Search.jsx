@@ -14,7 +14,7 @@ function Search({ searchTerm, onSearch, onClear, onChange }) {
     }
 
     return (
-        <div className={styles.searchBar}>
+        <div className={styles.search}>
             <label className={styles.searchIconAndInput}>
                 <img src="./images/search-icon.svg" alt="" className={styles.searchIcon} />
                 <input 
@@ -27,8 +27,8 @@ function Search({ searchTerm, onSearch, onClear, onChange }) {
                 />
             </label>
             <div className={styles.buttons}>
-                <button ref={searchButton} className={styles.searchBarButton} onClick={onSearch}>Search</button>
-                <button className={styles.searchBarButton} onClick={onClear}>Clear</button>
+                <button ref={searchButton} className={styles.searchButton} onClick={onSearch}>Search</button>
+                <button className={styles.searchButton} onClick={onClear}>Clear</button>
             </div>
         </div>
     );

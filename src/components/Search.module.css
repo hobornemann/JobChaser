@@ -41,8 +41,8 @@ input::placeholder{
     
 }
 
-.searchBarButton{
+.searchButton{
     color: white;
-    background-color: rgba(48, 50, 113, 0.8 );;
+    background-color: rgba(48, 50, 113, 0.8 );
 }
 

@@ -14,7 +14,7 @@ import Dashboard from './pages/Dashboard'
 
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase.config";
-
+import jobsJson from '../public/jsons/jobs.json'
 import './App.css'
 
 export default App
@@ -64,7 +64,7 @@ function App() {
     const fetchJobs = async () => {
       try {
           /*const response = await fetch('https://jsonplaceholder.typicode.com/posts');*/
-          const response = await fetch('../public/jsons/jobs.json');  
+          const response = await fetch(jobsJson);  // '../public/jsons/jobs.json'
           if (!response.ok) {
             setFeedback("The jobs list cannot be loaded. Please try again later.")
             throw new Error('Failed to fetch');
