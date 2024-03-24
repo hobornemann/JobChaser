@@ -14,7 +14,7 @@ import Dashboard from './pages/Dashboard'
 
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase.config";
-import jobsJson from '../public/jsons/jobs.json'
+import jobsJson from './jobs.json';
 import './App.css'
 
 export default App
@@ -64,7 +64,7 @@ function App() {
     const fetchJobs = async () => {
       try {
           /*const response = await fetch('https://jsonplaceholder.typicode.com/posts');*/
-          const response = await fetch(jobsJson);  // '../public/jsons/jobs.json'
+          const response = await fetch('/jobs.json');  // '../src/jsons/jobs.json'   /jsons/jobs.json?url  //'../jsons/jobs.json'  // './jsons/jobs.json'
           if (!response.ok) {
             setFeedback("The jobs list cannot be loaded. Please try again later.")
             throw new Error('Failed to fetch');
@@ -186,3 +186,11 @@ onAuthStateChanged(auth, (user) => {
     // ...
   }
 }); */
+
+
+
+/* 
+Assets in public directory cannot be imported from JavaScript.
+If you intend to import that asset, put the file in the src directory, and use /src/jsons/jobs.json instead of /public/jsons/jobs.json.
+If you intend to use the URL of that asset, use /jsons/jobs.json?url.
+*/

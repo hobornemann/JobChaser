@@ -10,7 +10,7 @@
     left: 0;
     width: 100%;
     z-index: 1000; 
-    height: 15vh;
+    /* height: 15vh; */
     color: white;
     /* padding: 2vw; */
 }

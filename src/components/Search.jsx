@@ -20,7 +20,7 @@ function Search({ searchTerm, onSearch, onClear, onChange }) {
                 <input 
                     type="text" 
                     className={styles.searchInput}
-                    placeholder="Write your search text here"
+                    placeholder={"Write your search text here"}
                     value={searchTerm}
                     onChange={onChange}
                     onKeyDown={handleKeyDown}
