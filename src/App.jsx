@@ -1,19 +1,57 @@
 import { BrowserRouter, Routes, Route, Navigate, Link, Outlet } from 'react-router-dom'
-import { useState, useEffect } from 'react';
-import './App.css'
+import { useState, useEffect, useContext } from 'react';
+
 import Header from './components/Header';
-import Footer from './components/Footer';
+ 
+
+
+import { AuthContext } from './contexts/AuthContext';
 
 import HomePage from "./pages/HomePage"; 
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import Dashboard from './pages/Dashboard'
 
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase.config";
+
+import './App.css'
+
 export default App
 
 
 
+function ProtectedRoute() {
+  // xxx
+  const authContext = useContext(AuthContext);
+  const isAuthenticated = authContext && authContext.user !== null;
+  console.log("isAuthenticated", isAuthenticated)
+  return isAuthenticated ? <Outlet /> : <Navigate to="/signin" replace />;
+}
+
+
+
+
 function App() {
+
+
+  const authContext = useContext(AuthContext);
+  console.log("authContext: ", authContext);
+  const isAuthenticated = authContext && authContext.user !== null;
+  console.log("isAuthenticated", isAuthenticated)
+
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("User signed out successfully");
+        // Additional actions after sign out, such as redirecting to another page
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error);
+      });
+  };
+
 
   const [allJobs, setAllJobs] = useState([])
   const [jobs, setJobs] = useState([])
@@ -26,8 +64,7 @@ function App() {
     const fetchJobs = async () => {
       try {
           /*const response = await fetch('https://jsonplaceholder.typicode.com/posts');*/
-          const response = await fetch('./jsons/jobs.json');
-
+          const response = await fetch('../public/jsons/jobs.json');  
           if (!response.ok) {
             setFeedback("The jobs list cannot be loaded. Please try again later.")
             throw new Error('Failed to fetch');
@@ -41,19 +78,18 @@ function App() {
         console.error('Error fetching jobs');
       }
     };
-  
     setTimeout(()=> {
       fetchJobs();
     },1000)  
-
     // TODO: navigate to HomePage
-
   }, []);   // dependency-array inkluderas så att funtionen bara körs vid mount 
   
+
   function handleChange(e) {
     e.preventDefault();
     setSearchTerm(e.target.value)
   }
+
 
   function handleSearch(e){
     e.preventDefault();
@@ -65,12 +101,14 @@ function App() {
     !searchedJobs.length && setFeedback('Sorry, no jobs matched your search text.') 
   }
 
+
   function handleClear(e){
     e.preventDefault();
     setFeedback('')
     setJobs(allJobs)
     setSearchTerm('')
   }
+
 
   function searchNestedObject(obj, searchString) {
     return searchRecursive(obj);
@@ -97,23 +135,21 @@ function App() {
   }
 
 
+
   return (
     <BrowserRouter>
-      
       <Header
         searchTerm={searchTerm}
-        handleChange={handleChange}
-        handleSearch={handleSearch}
-        handleClear={handleClear}
-        jobs={jobs}
-        feedback={feedback}
+        onChange={handleChange}
+        onSearch={handleSearch}
+        onClear={handleClear}
+        onSignOut={handleSignOut}
+        /* jobs={jobs}
+        feedback={feedback} */
       /> 
-      
-      <Footer/>
-
       <Routes>
-          <Route path="/" element={<HomePage/>}/> 
-          <Route path="/*" element={<Navigate to="/" replace />}/> 
+          <Route path="/" element={<HomePage jobs={jobs} feedback={feedback}/>}/> 
+          <Route path="/*" element={<Navigate to="/" replace />} />
           <Route path="/signup" element={<SignUpPage/>}/>
           <Route path="/signin" element={<SignInPage/>}/>
           <Route path="/dashboard" element={<ProtectedRoute/>}>

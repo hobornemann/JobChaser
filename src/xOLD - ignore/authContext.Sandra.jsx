@@ -1,6 +1,5 @@
-// Observer
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../../firebase.config";
+import { auth } from "../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 
 
@@ -9,6 +8,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
+
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -19,6 +19,9 @@ export const AuthProvider = ({ children }) => {
             }
             console.log("user: ", user);
         });
+    
+    
+
     }, []);
 
 
@@ -28,8 +31,3 @@ return (
     </AuthContext.Provider>
 )
 }
-
-
-
-
-

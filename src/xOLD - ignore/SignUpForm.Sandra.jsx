@@ -1,16 +1,13 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import  {createUserWithEmailAndPassword} from "firebase/auth";
-import { auth } from '../../firebase.config'
-
-export default SignUpForm;
+import { auth } from "../firebase-config";
 
 
 function SignUpForm() {
 
   const navigate = useNavigate()
 
-  // destructure useForm() into single props
   const {
     register,
     handleSubmit,
@@ -21,19 +18,15 @@ function SignUpForm() {
 
   const formSubmit = (data) => {
     console.log("Form Submitted: ", data);
-    const {email, password} = data
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up 
-      const user = userCredential.user;
-      // Redirect to a new page after successful form submission
-      navigate("/signin")
-    })
-    .catch((error) => {
-  /*     const errorCode = error.code;
-      const errorMessage = error.message; */
-      console.error("Error creating user:", error);
-    });
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+    .then(() => {
+        // Redirect to a new page after successful form submission
+        navigate("/signin");
+      })
+      .catch((error) => {
+        console.error("Error creating user:", error);
+      });
+    
     
   };
 
@@ -86,9 +79,12 @@ function SignUpForm() {
           <span>{errors.confirmPassword.message}</span>
         )}
       </div>
+
       <button type="submit">Register</button>
       <Link to="/signin">Already have an account? Sign In</Link>
+
     </form>
   );
 }
 
+export default SignUpForm;

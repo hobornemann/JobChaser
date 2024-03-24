@@ -1,12 +1,24 @@
 import SignUpForm from '../components/SignUpForm';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import Footer from '../components/Footer';
 
 export default SignUpPage;
 
 
 function SignUpPage() {
   
-  const auth = getAuth();
+  return (
+    <div>
+      <h1>Sign Up</h1>
+      <SignUpForm />
+      <Footer/>
+    </div>
+  );
+}
+
+
+
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+/*   const auth = getAuth();
   
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -18,15 +30,4 @@ function SignUpPage() {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
-    });
-
-  return (
-    <div>
-      <h1>Sign Up</h1>
-      <SignUpForm />
-    </div>
-  );
-}
-
-
-
+    }); */

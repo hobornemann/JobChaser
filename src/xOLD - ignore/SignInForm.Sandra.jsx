@@ -1,15 +1,12 @@
 import { useForm } from "react-hook-form";
 import {  Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase.config"
-
-export default SignInForm;
-
+import {signInWithEmailAndPassword} from "firebase/auth";
+import { auth } from "./../firebase-config";
 
 
 function SignInForm() {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const {
     register,
@@ -20,20 +17,21 @@ function SignInForm() {
   const formSubmit = (data) => {
 
     console.log("Form Submitted: ", data);
-    const {email, password} = data
+    const {email, password} = data;
+ 
+     signInWithEmailAndPassword(auth, email, password)
+     .then((userCredential) => {
+     // Signed in 
+     const user = userCredential.user;
+     console.log("User signed in: ", user);
+     navigate("/dashboard");
+     })
+     .catch((error) => {
+     const errorCode = error.code;
+     const errorMessage = error.message;
+     });
+ 
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log("User signed in: ", user);
-        navigate("/dashboard");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log("Error when signing in: ", error)
-    });
   };
 
   return (
@@ -80,3 +78,4 @@ function SignInForm() {
   );
 }
 
+export default SignInForm;

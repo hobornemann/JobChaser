@@ -17,11 +17,8 @@ function ProtectedRoute() {
 
 export default Header
 
-function Header({searchTerm, onSearch, onClear, onChange}) {
+function Header({searchTerm, onSearch, onClear, onChange, onSignOut}) {
 
-  const handleSignOut = () => {
-    // vi återkommer
-  }
 
   return (
     <header className='headerContainer'>
@@ -46,7 +43,7 @@ function Header({searchTerm, onSearch, onClear, onChange}) {
                   <Link to="/signup">Sign up</Link>
               </li>
               <li>
-                  <button onClick={handleSignOut}>Sign Out</button>
+                  <button onClick={onSignOut}>Sign Out</button>
               </li>
           </ul>
       </nav>
