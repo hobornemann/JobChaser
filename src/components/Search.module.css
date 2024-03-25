@@ -26,11 +26,17 @@ input{
     width: 20vw;
     /* font-size: clamp(11px 70vh  24px); */
     border-color: rgba(48, 50, 113, 1.0);
+    
 }
 
 input::placeholder{
 
     color: rgba(48, 50, 113, 1.0);
+    padding-left: 10px;
+}
+
+input::content{
+    padding-left: 10px;
 }
 
 .buttons{
@@ -46,3 +52,6 @@ input::placeholder{
     background-color: rgba(48, 50, 113, 0.8 );
 }
 
+.searchInput{
+    color: rgba(48, 50, 113, 1.0);
+}

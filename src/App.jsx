@@ -61,7 +61,7 @@ function App() {
 
   useEffect(() => {
     // Denna kod kommer köras efter mount (initiala renderingen)
-    const fetchJobs = async (searchTerm='react') => {
+    const fetchJobs = async (searchTerm) => {
       try {
           //const response = await fetch('https://jsonplaceholder.typicode.com/posts');
           const response = await fetch(`${'https://jobsearch.api.jobtechdev.se/search?q='}${searchTerm}`);  // 'https://jobsearch.api.jobtechdev.se/search?q=react'
@@ -84,9 +84,9 @@ function App() {
     
     };
 
-    fetchJobs();
+    fetchJobs(searchTerm);
       
-  }, []);   // dependency-array inkluderas så att funtionen bara körs vid mount 
+  }, [searchTerm]);   // dependency-array inkluderas så att funtionen bara körs vid mount 
 
 
 
@@ -99,9 +99,10 @@ function App() {
   function handleSearch(e){
     e.preventDefault();
     setFeedback('')
-    const searchedJobs = fetchJobs(searchTerm)
+    setSearchTerm(e.target.value)
+/*     const searchedJobs = fetchJobs(searchTerm)
     setJobs(searchedJobs);
-    !searchedJobs.length && setFeedback('Sorry, no jobs matched your search text.') 
+ */ /*    !searchedJobs.length && setFeedback('Sorry, no jobs matched your search text.') */ 
   }
 
   /* function handleSearch(e){
