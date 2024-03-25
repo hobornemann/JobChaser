@@ -4,7 +4,42 @@ import styles from './JobCard.module.css';
 
 export default JobCard
 
-function JobCard({company, logoUrl, position, role, 
+function JobCard({logoUrl, headline, occupation, employer, employmentType, duration, 
+    workingHoursType, workplaceAddressCity, workplaceAddressStreet, 
+    applicationDeadline, applicationEmailAddress, description}){
+        
+    /* let languagesConcat = languages.join(", ")
+    let toolsConcat = tools.join(", ")
+ */
+
+
+    return(
+        <li className={styles.jobCard}>
+            {logoUrl? <img src={logoUrl} alt="" className="imgRound" /> : <img src='./images/jobChaser-default.svg' alt="" className="imgRound" />}
+            <div className={styles.jobAdvertisement}>
+                <h2 className={styles.jobAdvertisementHeading}>{headline}</h2>
+                <div className={styles.jobAdvertisementItems}>
+                    {employer && <p className={styles.jobCardInfo}><b>Företag:&nbsp;</b> {employer}</p>}
+                    {occupation && <p className={styles.jobCardInfo}> <b>Position:&nbsp;</b> {occupation}</p>}
+                    {employmentType && <p className={styles.jobCardInfo}><b>Anställningstyp:&nbsp;</b> {employmentType}</p>}
+                    {duration && <p className={styles.jobCardInfo}><b>Anställningsform:&nbsp;</b> {duration}</p>}
+                    {workingHoursType && <p className={styles.jobCardInfo}><b>Arbetstid:&nbsp;</b> {workingHoursType}</p>}
+                    {workplaceAddressCity && <p className={styles.jobCardInfo}><b>Plats:&nbsp;</b> {workplaceAddressStreet}{', '}{workplaceAddressCity}</p>}
+                    {applicationDeadline && <p className={styles.jobCardInfo}><b>Sista ansökningsdag:&nbsp;</b> {applicationDeadline}</p>}
+                    {applicationEmailAddress && <p className={styles.jobCardInfo}><b>Email:&nbsp;</b> {applicationEmailAddress}</p>}
+                    {description && <p className={styles.jobCardInfo}><b>Arbetsbeskrivning:&nbsp;</b></p>}
+                </div>
+                <div className={styles.jobDescription}>
+                    {description && <p>{description}</p>}
+                </div>
+            </div>
+        </li>
+    );
+}
+
+
+
+/* function JobCard({company, logoUrl, position, role, 
     level, postedAt, contract, location, languages, tools}){
         
     let languagesConcat = languages.join(", ")
@@ -38,4 +73,4 @@ function JobCard({company, logoUrl, position, role,
             }
         </li>
     );
-}
+} */

@@ -61,29 +61,34 @@ function App() {
 
   useEffect(() => {
     // Denna kod kommer köras efter mount (initiala renderingen)
-    const fetchJobs = async () => {
+    const fetchJobs = async (searchTerm='react') => {
       try {
-          /*const response = await fetch('https://jsonplaceholder.typicode.com/posts');*/
-          const response = await fetch('/jobs.json');  // '../src/jsons/jobs.json'   /jsons/jobs.json?url  //'../jsons/jobs.json'  // './jsons/jobs.json'
+          //const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+          const response = await fetch(`${'https://jobsearch.api.jobtechdev.se/search?q='}${searchTerm}`);  // 'https://jobsearch.api.jobtechdev.se/search?q=react'
+          console.log('response: ',response)
           if (!response.ok) {
             setFeedback("The jobs list cannot be loaded. Please try again later.")
             throw new Error('Failed to fetch');
           }
-          const jobsFromFetch = await response.json();
+          const jobsObjectFromFetch = await response.json();
+          const jobsFromFetch = jobsObjectFromFetch.hits;
+          console.log('jobsFromFetch:',jobsFromFetch);
           (jobsFromFetch.length === 0) ? setFeedback('No jobs available') : setFeedback('')
           setAllJobs(jobsFromFetch);
           setJobs(jobsFromFetch);
+          return jobsFromFetch
       } catch (error) {
         console.log(error.message)
         console.error('Error fetching jobs');
       }
+    
     };
-    setTimeout(()=> {
-      fetchJobs();
-    },1000)  
-    // TODO: navigate to HomePage
+
+    fetchJobs();
+      
   }, []);   // dependency-array inkluderas så att funtionen bara körs vid mount 
-  
+
+
 
   function handleChange(e) {
     e.preventDefault();
@@ -94,21 +99,35 @@ function App() {
   function handleSearch(e){
     e.preventDefault();
     setFeedback('')
+    const searchedJobs = fetchJobs(searchTerm)
+    setJobs(searchedJobs);
+    !searchedJobs.length && setFeedback('Sorry, no jobs matched your search text.') 
+  }
+
+  /* function handleSearch(e){
+    e.preventDefault();
+    setFeedback('')
     const searchedJobs = allJobs.filter(job => {
       return searchNestedObject(job, searchTerm)
     })
     setJobs(searchedJobs);
     !searchedJobs.length && setFeedback('Sorry, no jobs matched your search text.') 
   }
-
+ */
 
   function handleClear(e){
     e.preventDefault();
     setFeedback('')
-    setJobs(allJobs)
+    setJobs('')
     setSearchTerm('')
   }
 
+  /* function handleClear(e){
+    e.preventDefault();
+    setFeedback('')
+    setJobs(allJobs)
+    setSearchTerm('')
+  } */
 
   function searchNestedObject(obj, searchString) {
     return searchRecursive(obj);
@@ -162,31 +181,6 @@ function App() {
 
 
 
-   /*  <HomePage
-      searchTerm={searchTerm}
-      handleChange={handleChange}
-      handleSearch={handleSearch}
-      handleClear={handleClear}
-      jobs={jobs}
-      feedback={feedback}
-    /> */
-
-/* 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/auth.user
-    const uid = user.uid;
-    // ...
-  } else {
-    // User is signed out
-    // ...
-  }
-}); */
-
 
 
 /* 
@@ -194,3 +188,35 @@ Assets in public directory cannot be imported from JavaScript.
 If you intend to import that asset, put the file in the src directory, and use /src/jsons/jobs.json instead of /public/jsons/jobs.json.
 If you intend to use the URL of that asset, use /jsons/jobs.json?url.
 */
+
+
+
+
+// RESERV-KOD  - FETCH från JOBS.JSON
+
+/* 
+  useEffect(() => {
+    // Denna kod kommer köras efter mount (initiala renderingen)
+    const fetchJobs = async () => {
+      try {
+          //const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+          const response = await fetch('/jobs.json');  // '../src/jsons/jobs.json'   /jsons/jobs.json?url  //'../jsons/jobs.json'  // './jsons/jobs.json'
+          if (!response.ok) {
+            setFeedback("The jobs list cannot be loaded. Please try again later.")
+            throw new Error('Failed to fetch');
+          }
+          const jobsFromFetch = await response.json();
+          (jobsFromFetch.length === 0) ? setFeedback('No jobs available') : setFeedback('')
+          setAllJobs(jobsFromFetch);
+          setJobs(jobsFromFetch);
+      } catch (error) {
+        console.log(error.message)
+        console.error('Error fetching jobs');
+      }
+    };
+    setTimeout(()=> {
+      fetchJobs();
+    },1000)  
+    // TODO: navigate to HomePage
+  }, []);   // dependency-array inkluderas så att funtionen bara körs vid mount 
+ */  

@@ -7,7 +7,7 @@ function Dashboard() {
 
     return (
         <div>
-            <h1>Joblist</h1>
+            <h1>Dashboard</h1>
             <Footer/>
         </div>
     )

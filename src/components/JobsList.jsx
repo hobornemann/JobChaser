@@ -15,16 +15,18 @@ function JobsList({jobs}) {
                         return (
                             <JobCard
                                 key={job.id}
-                                company={job.company}
-                                logoUrl={job.logo}
-                                position={job.position}
-                                role={job.role}
-                                level={job.level}
-                                postedAt={job.postedAt}
-                                contract={job.contract}
-                                location={job.location}
-                                languages={job.languages}
-                                tools={job.tools}
+                                logoUrl={job.logo_url}
+                                headline={job.headline}
+                                occupation={job.occupation.label}
+                                employer={job.employer.name}
+                                employmentType={job.employment_type.label}
+                                workingHoursType={job.working_hours_type.label}
+                                workplaceAddressCity={job.workplace_address.city}
+                                workplaceAddressStreet={job.workplace_address.street_address}
+                                duration={job.duration.label}
+                                applicationDeadline={job.application_deadline}
+                                applicationEmailAddress={job.application_details.email}
+                                description={job.description.text}
                             />
                         );
                     })
